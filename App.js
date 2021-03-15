@@ -9,6 +9,7 @@ import ProfileActivity from './screens/ProfileActivity';
 import EditImageActivity from './screens/EditImageActivity';
 import EditProfileActivity from './screens/EditProfileActivity';
 import EditPasswordActivity from './screens/EditPasswordActivity';
+import ImageFilter from './screens/ImageFilter';
 
 const Stack = createStackNavigator();  
 function App() {
@@ -51,6 +52,14 @@ function App() {
             headerTintColor:"#fff",
           }
           } name="EditPasswordActivity" component={EditPasswordActivity} 
+        />
+        <Stack.Screen options={
+          {
+            title: 'Filter', 
+            headerStyle:{backgroundColor:'#0c1b32'},
+            headerTintColor:"#fff",
+          }
+          } name="ImageFilter" component={ImageFilter} initialParams={{ path: 'https://i.ibb.co/CJGmnGg/default.png' }}
         />
       </Stack.Navigator>
     </NavigationContainer>

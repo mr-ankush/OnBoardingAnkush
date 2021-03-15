@@ -8,6 +8,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 const ProfileActivity = ({navigation}) => {
     let opacity = new Animated.Value(0.5);
+    let opacitys = new Animated.Value(1);
     let BORDERS = new Animated.Value(100);
     let WIDTHS = new Animated.Value(160);
     let HEIGHTS = new Animated.Value(160);
@@ -311,10 +312,11 @@ const ProfileActivity = ({navigation}) => {
         console.log("animation view "+animState);
       }
     }
-    const stopAnimate = () => {
+    const stopAnimate = (path) => {
       stopA();
-      setTimeout(function(){  
+      setTimeout(function(){
         animState == false ? setAnimState(true) : setAnimState(false);
+        path == true ? navigation.navigate('ImageFilter', {path: image} ) : {} ;
       }, 250);
       function stopA(){
         Animated.timing(
@@ -373,6 +375,14 @@ const ProfileActivity = ({navigation}) => {
             useNativeDriver: false,
           },
         ).start();
+        Animated.timing(
+          opacitys, // The animated value to drive
+          {
+            toValue: 0, // Animate to opacity: 1 (opaque)
+            duration: 50, // Make it take a while
+            useNativeDriver: false,
+          },
+        ).start();
         console.log("animation false "+animState);
       }
     }
@@ -404,6 +414,7 @@ const ProfileActivity = ({navigation}) => {
                       }}
                     >
                       { animState == true ? cancelAnimButton() : [] }
+                      { animState == true ? filterAnim () : [] }
                       <TouchableNativeFeedback 
                         style={{
                           width: WIDTH,
@@ -464,10 +475,22 @@ const ProfileActivity = ({navigation}) => {
     function cancelAnimButton() {
       return (
         <Animated.View style={{position:'absolute',top:5,right:5,opacity:opacity,}}>
-          <TouchableOpacity  onPress={ () => { stopAnimate(); } }>
+          <TouchableOpacity  onPress={ () => { stopAnimate(false); } }>
             <Icon name="close" size={30} color="#fff" />
           </TouchableOpacity>
-        </Animated.View>
+        </Animated.View> 
+        // <TouchableOpacity style={styles.cancelAnimButton} onPress={ () => { stopAnimate(); } }>
+        //   <Icon name="close" size={30} color="#fff" style={ styles.cancelAnimButtonEdit } />
+        // </TouchableOpacity>
+      );
+    } 
+    function filterAnim() {
+      return (
+        <Animated.View style={{position:'absolute',bottom:10,left:10,opacity:opacitys,}}>
+          <TouchableOpacity  onPress={ () => { stopAnimate(true); } }>
+            <Icon name="creation" size={30} color="#fff" />
+          </TouchableOpacity>
+        </Animated.View> 
         // <TouchableOpacity style={styles.cancelAnimButton} onPress={ () => { stopAnimate(); } }>
         //   <Icon name="close" size={30} color="#fff" style={ styles.cancelAnimButtonEdit } />
         // </TouchableOpacity>

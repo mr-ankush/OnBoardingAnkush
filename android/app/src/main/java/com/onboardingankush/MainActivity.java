@@ -1,7 +1,7 @@
 package com.onboardingankush;
 // import com.reactlibrary.RNImageFilterPackage; // image filter
 import com.facebook.react.ReactActivity;
-
+import com.reactlibrary.RNImageFilterPackage;
 public class MainActivity extends ReactActivity {
 
   /**

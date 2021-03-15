@@ -315,8 +315,8 @@ const ProfileActivity = ({navigation}) => {
     const stopAnimate = (path) => {
       stopA();
       setTimeout(function(){
-        animState == false ? setAnimState(true) : setAnimState(false);
         path == true ? navigation.navigate('ImageFilter', {path: image} ) : {} ;
+        animState == false ? setAnimState(true) : setAnimState(false);
       }, 250);
       function stopA(){
         Animated.timing(

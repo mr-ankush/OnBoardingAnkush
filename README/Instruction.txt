@@ -1,5 +1,7 @@
 Image upload on https://imgbb.com/
 
+None Effect Icon => https://ibb.co/vVdsh8K or https://i.ibb.co/FmYsXtj/none-icon.png
+
 splash_icon.png => https://ibb.co/CttLxfp or https://i.ibb.co/Mhhdqmy/splash-icon.jpg
 
 Avtar => https://ibb.co/3fZ40Z2 or https://i.ibb.co/CJGmnGg/default.png

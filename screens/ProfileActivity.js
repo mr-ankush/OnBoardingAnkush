@@ -365,6 +365,14 @@ const ProfileActivity = ({navigation}) => {
             useNativeDriver: false,
           },
         ).start();
+        Animated.timing(
+          opacity, // The animated value to drive
+          {
+            toValue: 0, // Animate to opacity: 1 (opaque)
+            duration: 50, // Make it take a while
+            useNativeDriver: false,
+          },
+        ).start();
         console.log("animation false "+animState);
       }
     }
@@ -455,9 +463,14 @@ const ProfileActivity = ({navigation}) => {
     )
     function cancelAnimButton() {
       return (
-        <TouchableOpacity style={styles.cancelAnimButton} onPress={ () => { stopAnimate(); } }>
-          <Icon name="close" size={30} color="#fff" style={styles.cancelAnimButtonEdit} />
-        </TouchableOpacity>
+        <Animated.View style={{position:'absolute',top:5,right:5,opacity:opacity,}}>
+          <TouchableOpacity  onPress={ () => { stopAnimate(); } }>
+            <Icon name="close" size={30} color="#fff" />
+          </TouchableOpacity>
+        </Animated.View>
+        // <TouchableOpacity style={styles.cancelAnimButton} onPress={ () => { stopAnimate(); } }>
+        //   <Icon name="close" size={30} color="#fff" style={ styles.cancelAnimButtonEdit } />
+        // </TouchableOpacity>
       );
     } 
 }
@@ -596,9 +609,10 @@ const styles = StyleSheet.create({
       position:'absolute',
       top:5,
       right:5,
+      opacity:0.3,
     },
     cancelAnimButtonEdit:{
-      
+      opacity: 0.3,
     },
 });
 export default ProfileActivity;

@@ -1,0 +1,47 @@
+Image upload on https://imgbb.com/
+
+splash_icon.png => https://ibb.co/CttLxfp or https://i.ibb.co/Mhhdqmy/splash-icon.jpg
+
+Avtar => https://ibb.co/3fZ40Z2 or https://i.ibb.co/CJGmnGg/default.png
+
+Avtar Male1 => https://ibb.co/1R1yR37 or https://i.ibb.co/XF10F9j/m1.png
+
+Avtar Male2 => https://ibb.co/XWYSK85 or https://i.ibb.co/x2FJBHg/m2.webp
+
+Avtar Male3 => https://ibb.co/L9rzzJv or https://i.ibb.co/mh0CCXS/m3.webp
+
+Avtar Male4 => https://ibb.co/myGC1fV or https://i.ibb.co/PWNZ3qv/m4.webp
+
+Avtar Male5 => https://ibb.co/C8tDPxG or https://i.ibb.co/RbSdjLw/m5.webp
+
+Avtar Male6 => https://ibb.co/gTrr5wz or https://i.ibb.co/yyNNw5W/m6.jpg
+
+Avtar Female1 => https://ibb.co/7RVZ5xy or https://i.ibb.co/hZH4jx8/f1.png
+
+Avtar Female2 => https://ibb.co/S3MFb0T or https://i.ibb.co/DRv0hkX/f2.jpg
+
+Avtar Female3 => https://ibb.co/p2WF4n9 or https://i.ibb.co/cJbn2x7/f3.jpg
+
+Avtar Female4 => https://ibb.co/G0cSgr2 or https://i.ibb.co/Dt523jC/Pretty-girl-avatar-Flat-cartoon-style-Vector-Illustration.jpg
+
+Avtar Female5 => https://ibb.co/4NYSm1C or https://i.ibb.co/HgxPFhR/f5.jpg
+
+Avtar Female6 => https://ibb.co/Y7ThTRq or https://i.ibb.co/BVKBKzS/f6.webp
+
+
+from Android Studio (release)
+===== * =====
+key store path : E:\MobileDevelopment\AnkushWork\ReactNative\OnBoardingAnkush\android\keystores\release.keystore.jks
+KEY
+Alias : est_user
+password : Test@123
+
+from CMD (testing)
+===== * =====
+key store path : E:\MobileDevelopment\AnkushWork\ReactNative\OnBoardingAnkush\android\keystores\release.keystore.jks
+KEY
+Alias : est_user_testing
+password : Test@123
+
+step1: keytool -genkey -v -keystore testing.keystore.jks -alias est_user_testing -keyalg RSA -keysize 2048 -validity 10000
+step2: keytool -v -list -keystore <filePath+filename>

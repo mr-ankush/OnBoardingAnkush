@@ -231,6 +231,9 @@ const SignupActivity = ({navigation}) => {
                 AsyncStorage.setItem('EMAIL', email);
                 AsyncStorage.setItem('PASSWORD', pass);
                 AsyncStorage.setItem('KEY','0'); // 0 for log-out
+                AsyncStorage.setItem('BASE64','none');
+                AsyncStorage.setItem('FILTER','false');
+                AsyncStorage.setItem('FILTER_TYPE','');
                 setFirstName('');
                 setLastName('');
                 setEmail('');

@@ -196,3 +196,147 @@ const styles = StyleSheet.create({
         height: 135,
     },
 });
+
+    // RNImageFilter.getSourceImage(
+    //     {
+    //         imageSource: route.params.path,
+    //         dataType: "Path",
+    //         filterType: 1,
+    //     },
+    //     (source) => {
+    //         setImage0("data:image/jpeg;base64,"+source.base64);
+    //         // console.log("SOURCE", source);
+    //         console.log("\n\n\nSOURCE", source.height);
+    //         // source returns the height, width and the Base64 string of the image.
+    //     }
+    // );
+    // RNImageFilter.getSourceImage(
+    //     {
+    //         imageSource: route.params.path,
+    //         dataType: "Path",
+    //         filterType: 1,
+    //     },
+    //     (source) => {
+    //         setImage1("data:image/jpeg;base64,"+source.base64);
+    //         // console.log("SOURCE", source);
+    //         console.log("\n\n\nSOURCE", source.height);
+    //         // source returns the height, width and the Base64 string of the image.
+    //     }
+    // );
+
+
+   // RNImageFilter.getSourceImage(
+    //     {
+    //         imageSource: route.params.path,
+    //         dataType: "Path",
+    //         filterType: 1,
+    //     },
+    //     (source) => {
+    //         // setImage(route.params.image);
+    //         // console.log("IMAGE", route.params.image);
+    //         setImage0("data:image/jpeg;base64,"+source.base64);
+    //         // setImage("https://upload.wikimedia.org/wikipedia/en/thumb/9/90/Krithi_Shetty.jpg/1200px-Krithi_Shetty.jpg");
+    //         // console.log("SOURCE", source);
+    //         console.log("SOURCE", "data:image/jpeg;base64,"+source.base64);
+    //         // source returns the height, width and the Base64 string of the image.
+    //     }
+    // );
+    
+    // useEffect(() => {
+    //     const promises = [];
+    //     for(i=0; i<=1; ++i){
+    //             console.log("IMAE => ", i);
+    //             promises.push(fetchData(i));
+    //             console.log("IMAGE => ", i);
+    //     }
+    //     Promise.all(promises).then((values) => {
+    //         console.log("P: "+values);
+    //     });
+    //     async function fetchData(v) {
+    //         return new Promise((resolve) => {
+    //             RNImageFilter.getSourceImage(
+    //                 {
+    //                     imageSource: route.params.path,
+    //                     dataType: "Path",
+    //                     filterType: 1,
+    //                 },
+    //                 (source) => {
+    //                         resolve("value "+v);
+    //                 }
+    //             ); 
+    //             // resolve("value "+v);
+
+    //         });
+    //     }
+    // },[]); //last
+
+
+    // useEffect(() => {
+    //     console.log("IMAE => ", i);
+    //     for(i=0; i<=5; ++i){
+    //         const promise = new Promise((resolve, reject) => {
+    //             // resolve('fool: '+i);
+    //             array.push(Promise.resolve('fool: '+i));
+    //                 // RNImageFilter.getSourceImage(
+    //                 //     {
+    //                 //         imageSource: route.params.path,
+    //                 //         dataType: "Path",
+    //                 //         filterType: i,
+    //                 //     },
+    //                 //     (source) => {
+    //                 //         // resolve("data:image/jpeg;base64,"+source.width);
+    //                 //         // array.push(promise);
+    //                 //         // setImages("data:image/jpeg;base64,"+source.base64);
+                            
+    //                 //     }
+    //                 // );
+    //         });
+    //     }
+    //     Promise.all(array).then((values) => {
+    //         console.log("P: "+values);
+    //     });
+    // });
+    // useEffect(() => {
+    //     console.log("IMAE => ", i);
+    //     for(i=0; i<=5; ++i){
+    //         const promise = new Promise((resolve, reject) => {
+    //             async function fetchData() {
+    //                 RNImageFilter.getSourceImage(
+    //                     {
+    //                         imageSource: route.params.path,
+    //                         dataType: "Path",
+    //                         filterType: i,
+    //                     },
+    //                     (source) => {
+    //                         resolve("data:image/jpeg;base64,"+source.width);
+    //                         array.push(promise);
+    //                         // setImages("data:image/jpeg;base64,"+source.base64);
+    //                     }
+    //                 );
+    //             }
+    //             fetchData();
+    //         });
+    //         console.log("IMAGE ", i);
+    //         // setImages(array);
+    //     }
+    //     Promise.all(array).then((values) => {
+    //         console.log("P: "+values);
+    //     });
+    //     console.log("=="+array+".");
+    // }, []);
+
+    // useEffect(async () => {
+    //         RNImageFilter.getSourceImage(
+    //             {
+    //                 imageSource: route.params.path,
+    //                 dataType: "Path",
+    //                 filterType: 1,
+    //             },
+    //             (source) => {
+    //                 setImage(source.base64);
+    //                 // console.log("SOURCE", source);
+    //                 console.log("\n\n\nSOURCE", source.height);
+    //                 // source returns the height, width and the Base64 string of the image.
+    //             }
+    //         );
+    // }, []);

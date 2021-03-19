@@ -33,6 +33,7 @@ const EditImageActivity = ({navigation}) => {
 
     const updateImage = () => {
         AsyncStorage.setItem('IMAGE', image);
+        AsyncStorage.setItem('FILTER','false');
         navigation.replace('ProfileActivity');
         ToastAndroid.show("Image Updated.", ToastAndroid.LONG);
     }

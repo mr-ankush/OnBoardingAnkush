@@ -1,7 +1,5 @@
 Image upload on https://imgbb.com/
 
-None Effect Icon => https://ibb.co/vVdsh8K or https://i.ibb.co/FmYsXtj/none-icon.png
-
 splash_icon.png => https://ibb.co/CttLxfp or https://i.ibb.co/Mhhdqmy/splash-icon.jpg
 
 Avtar => https://ibb.co/3fZ40Z2 or https://i.ibb.co/CJGmnGg/default.png
@@ -30,6 +28,29 @@ Avtar Female5 => https://ibb.co/4NYSm1C or https://i.ibb.co/HgxPFhR/f5.jpg
 
 Avtar Female6 => https://ibb.co/Y7ThTRq or https://i.ibb.co/BVKBKzS/f6.webp
 
+None Effect Icon => https://ibb.co/vVdsh8K or https://i.ibb.co/FmYsXtj/none-icon.png
+Effect Icon0 => https://ibb.co/rc1LGPC https://i.ibb.co/mXMYCsL/image.png
+Effect Icon1 => https://ibb.co/SV0HPzd https://i.ibb.co/TPRJksb/1.png
+Effect Icon2 => https://ibb.co/2nqSRRj https://i.ibb.co/0DqK11f/2.png
+Effect Icon3 => https://ibb.co/RgG2kC9 https://i.ibb.co/7SxvdGX/3.png
+Effect Icon4 => https://i.ibb.co/VMwbLrV/4.png
+Effect Icon5 => https://i.ibb.co/mDfNRLJ/5.png
+Effect Icon6 => https://i.ibb.co/RpR8fy0/6.png
+Effect Icon7 => https://i.ibb.co/zXZktms/7.png
+Effect Icon8 => https://i.ibb.co/bJq658v/8.png
+Effect Icon9 => https://i.ibb.co/HGR0TmY/9.png
+Effect Icon10 => https://i.ibb.co/RTtRKsK/10.png
+Effect Icon11 => https://i.ibb.co/nCZYT8D/11.png
+Effect Icon12 => https://i.ibb.co/HPb4LTd/12.png
+Effect Icon13 => https://i.ibb.co/LxFhX04/13.png
+Effect Icon14 => https://i.ibb.co/fGFnbGF/14.png
+Effect Icon15 => https://i.ibb.co/FW22F1T/15.png
+Effect Icon16 => https://i.ibb.co/3dKvr6D/16.png
+Effect Icon17 => https://i.ibb.co/yy1L69W/17.png
+Effect Icon18 => https://i.ibb.co/2vfGw4Y/18.png
+Effect Icon19 => https://i.ibb.co/2PJYkbm/19.png
+Effect Icon20 => https://i.ibb.co/T1wG7v6/20.png
+Effect Icon21 => https://i.ibb.co/CPCZmVG/21.png
 
 from Android Studio (release)
 ===== * =====

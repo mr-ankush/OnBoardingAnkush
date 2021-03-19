@@ -6,6 +6,10 @@ import AsyncStorage from '@react-native-community/async-storage';
 import CardView from 'react-native-cardview';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
+// import RNFetchBlob from 'react-native-fetch-blob';
+import DocumentPicker from 'react-native-document-picker';
+// import { DocumentPicker,DocumentPickerUtil } from 'react-native-document-picker';
+
 const ProfileActivity = ({navigation}) => {
     let opacity = new Animated.Value(0.5);
     let opacitys = new Animated.Value(1);
@@ -59,7 +63,7 @@ const ProfileActivity = ({navigation}) => {
     const [] = useState('');
     useEffect(() => {
         const unsubscribe = navigation.addListener('focus', () => {
-            AsyncStorage.multiGet([ 'FIRST_NAME', 'LAST_NAME', 'GENDER', 'EMAIL', 'PASSWORD', 'IMAGE' ])
+            AsyncStorage.multiGet([ 'FIRST_NAME', 'LAST_NAME', 'GENDER', 'EMAIL', 'PASSWORD', 'IMAGE', 'BASE64', 'FILTER', 'FILTER_TYPE' ])
             .then( response  => {
                 setFirstName(response[0][1]);
                 setLastName(response[1][1]);
@@ -67,30 +71,16 @@ const ProfileActivity = ({navigation}) => {
                 setEmail(response[3][1]);
                 setPass(response[4][1]);
                 setImage(response[5][1]);
+                setBase64(response[6][1]);
+                setFilter(response[7][1]);
+                setFilterType(response[8][1]);
+                console.log(response[8][1]);
+                // console.log("\n"+response[6][1]);
             })
         });
         // Return the function to unsubscribe from the event so it gets removed on unmount
         return unsubscribe;
     }, [navigation]);
-    // useEffect(() => {
-    //     const backAction = () => {
-    //         Alert.alert("Hold On !", "Are you sure you want to go exit?", [
-    //         {
-    //           text: "Cancel",
-    //           onPress: () => null,
-    //           style: "cancel"
-    //         },
-    //         { text: "EXIT", onPress: () => BackHandler.exitApp() }
-    //       ]);
-    //       return true;
-    //     };
-    //     const backHandler = BackHandler.addEventListener(
-    //       "hardwareBackPress",
-    //       backAction
-    //     );
-    //     // return () => backHandler.remove();
-    //     return () => BackHandler.removeEventListener("hardwareBackPress", backAction);
-    // }, []);
 
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -98,6 +88,9 @@ const ProfileActivity = ({navigation}) => {
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
     const [image, setImage] = useState('https://i.ibb.co/CJGmnGg/default.png');
+    const [base64, setBase64] = useState('https://i.ibb.co/CJGmnGg/default.png');
+    const [filter, setFilter] = useState('false');
+    const [filterType, setFilterType] = useState('');
 
     const changePassword = () => {
       navigation.navigate('EditPasswordActivity');
@@ -155,25 +148,86 @@ const ProfileActivity = ({navigation}) => {
               style: "default",
           },
           {
-              text: "Camera",
+              text: "TAKE PHOTO",
               onPress: () => { chooseCamera('photo') },
               style: "default",
           },
           { 
-              text: "SD Card",
-              onPress: () => { chooseFile('photo') },
+              text: "Choose from SD Card",
+              // onPress: () => { chooseFile('photo') },
+              onPress: () => { selectOneFile() },
               style:"default",
           }
       ],
       { cancelable: true }
       )
     }
+    const selectOneFile = async () => {
+        try {
+            const response = await DocumentPicker.pick({
+              type: [DocumentPicker.types.images],
+              mode:"import",
+              copyTo: "documentDirectory",
+            });
+
+            setImage("file://"+response.fileCopyUri);
+            setBase64(response.fileCopyUri);
+            setFilter('true');
+            AsyncStorage.setItem('IMAGE', "file://"+response.fileCopyUri);
+            AsyncStorage.setItem('BASE64', response.fileCopyUri);
+            AsyncStorage.setItem('FILTER','true');
+            AsyncStorage.setItem('FILTER_TYPE', "");
+        }
+        catch (err) {
+            if (DocumentPicker.isCancel(err)) {
+              // User cancelled the picker, exit any dialogs or menus and move on
+            } 
+            else {
+              throw err;
+            }
+        }
+
+        // const response = await DocumentPicker.pick({
+        //   type: [DocumentPicker.types.images],
+        //   mode:"import",
+        //   copyTo: "documentDirectory",
+        // });
+
+        //Printing the log realted to the file
+        // console.log('res : ' + JSON.stringify(response));
+        // console.log('File Copy URL : ' + response.fileCopyUri);
+        // console.log('URI : ' + response.uri);
+        // console.log('Type : ' + response.type);
+        // console.log('File Name : ' + response.name);
+        // console.log('File Size : ' + response.size);
+        // console.log('IMAGE : ' + "file://"+response.fileCopyUri);
+        // console.log('BASE64 : ' + response.fileCopyUri); // "data:image/jpeg;base64,"+
+
+        // console.log('\n\n' + response.uri+"\nfile://"+response.fileCopyUri);
+        
+
+        // DocumentPicker.show(
+        //   {
+        //     filetype: [DocumentPickerUtil.images()],
+        //   },
+        //   (error, res) => {
+        //     // Android
+        //     console.log(
+        //       res.uri,
+        //       res.type, // mime type
+        //       res.fileName,
+        //       res.fileSize
+        //     );
+        //   }
+        // );
+    };
     const chooseFile = async (type) => {
         let options = {
             mediaType: type,
             maxWidth: 300,
             maxHeight: 300,
             quality: 1,
+            includeBase64:true,
         };
         let isCameraPermitted = await requestCameraPermission();
         let isStoragePermitted = await requestExternalWritePermission();
@@ -193,16 +247,33 @@ const ProfileActivity = ({navigation}) => {
                 alert(response.errorMessage);
                 return;
             }
-            console.log('base64 -> ', response.base64);
+            // console.log('base64 -> ', response.base64);
             console.log('uri -> ', response.uri);
             console.log('width -> ', response.width);
             console.log('height -> ', response.height);
             console.log('fileSize -> ', response.fileSize);
             console.log('type -> ', response.type);
             console.log('fileName -> ', response.fileName);
+            
+            RNFetchBlob.fs.stat(response.uri)
+            .then((abs_path) => {
+              console.log("ABS PATH: "+abs_path.path);
+              //output: /storage/emulated/0/WhatsApp/Media/WhatsApp Images/IMG-20200831-WA0019.jpg
+            })
+            .catch((err) => {
+              console.log("Path ERROR: "+err);
+            });
+
             // setFile(response.uri);
+            
+            // setBase64(response.base64);
+            // setBase64("data:image/jpeg;base64,"+response.base64);
             setImage(response.uri);
+            setBase64("data:image/jpeg;base64,/"+response.base64);
             AsyncStorage.setItem('IMAGE', response.uri);
+            AsyncStorage.setItem('BASE64', "data:image/jpeg;base64,"+response.base64);
+            // AsyncStorage.setItem('BASE64',"data:image/jpeg;base64,"+response.base64);
+            // alert("data:image/jpeg;base64,"+response.base64);
         });
     };
     const chooseCamera = async (type) => {
@@ -211,6 +282,8 @@ const ProfileActivity = ({navigation}) => {
             maxWidth: 300,
             maxHeight: 300,
             quality: 1,
+            includeBase64:true,
+            saveToPhotos:true,
         };
         let isCameraPermitted = await requestCameraPermission();
         let isStoragePermitted = await requestExternalWritePermission();
@@ -240,6 +313,7 @@ const ProfileActivity = ({navigation}) => {
             // setFile(response.uri);
             setImage(response.uri);
             AsyncStorage.setItem('IMAGE', response.uri);
+            AsyncStorage.setItem('FILTER','false');
         });
     };
     const AnimatedStyle = [
@@ -315,7 +389,15 @@ const ProfileActivity = ({navigation}) => {
     const stopAnimate = (path) => {
       stopA();
       setTimeout(function(){
-        path == true ? navigation.navigate('ImageFilter', {path: image} ) : {} ;
+        if(path == true){
+          if(filter=='true'){
+            navigation.navigate('ImageFilter', {path: base64, image: image, filter_type: filterType} );
+          }
+          else{
+            alert("Image filter are only apply when you select image from SD-CARD.");
+          }
+        }
+        // path == true ? navigation.navigate('ImageFilter', {path: base64, image: image} ) : {} ;
         animState == false ? setAnimState(true) : setAnimState(false);
       }, 250);
       function stopA(){
@@ -431,6 +513,7 @@ const ProfileActivity = ({navigation}) => {
                             backgroundColor:'black',
                             borderColor:'white',
                             borderWidth:1,
+                            resizeMode: 'cover',
                           }}
                           source={ { uri : image } }
                         />
